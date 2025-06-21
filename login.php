@@ -12,14 +12,14 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-if ($user && password_verify($password, $user['password'])) {
+// Simple comparison for plain text (not secure)
+if ($user && $password === $user['password']) {
     $_SESSION['user_id'] = $user['iduser'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['role'] = $user['role'];
     header("Location: dashboard.html");
+    exit;
 } else {
     echo "<h3>Invalid login. <a href='index.html'>Try again</a></h3>";
 }
 ?>
-
-
