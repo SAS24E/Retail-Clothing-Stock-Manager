@@ -86,7 +86,7 @@ $result = $conn->query($sql);
     <!-- loop throough each product -->
         <?php while ($row = $result->fetch_assoc()): ?>
 
-    <!-- highlight row if  stock quantity is below the threshold
+    <!-- highlight row if  stock quantity is below the threshold -->
             <tr class="<?= ($row['quantity'] <= $row['low_stock_threshold']) ? 'low-stock' : '' ?>">
                 <td><?= $row['idproduct'] ?></td>
                 <td><?= $row['name'] ?></td>
