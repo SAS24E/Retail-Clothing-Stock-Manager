@@ -65,6 +65,8 @@ $result = $conn->query($sql);
 
 <table>
     <tr>
+
+        <!-- table headers -->
         <th>ID</th>
         <th>Name</th>
         <th>Brand</th>
@@ -78,8 +80,13 @@ $result = $conn->query($sql);
         <th>Updated</th>
     </tr>
 
+    <!-- check if products exist -->
     <?php if ($result && $result->num_rows > 0): ?>
+
+    <!-- loop throough each product -->
         <?php while ($row = $result->fetch_assoc()): ?>
+
+    <!-- highlight row if  stock quantity is below the threshold
             <tr class="<?= ($row['quantity'] <= $row['low_stock_threshold']) ? 'low-stock' : '' ?>">
                 <td><?= $row['idproduct'] ?></td>
                 <td><?= $row['name'] ?></td>
