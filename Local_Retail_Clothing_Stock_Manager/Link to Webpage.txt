@@ -1,4 +1,6 @@
 Link: clothingstockcheck.wuaze.com
 
+Database Test Case Login: "Enter it on login page".
+
 Login: admin
 Password: admin123

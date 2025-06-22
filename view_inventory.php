@@ -21,8 +21,8 @@ $result = $conn->query($sql);
 <head>
     <title>Inventory</title>
     <style>
-    /*
-
+        
+        /* Basic styles for the inventory page */
         body {
             font-family: Arial, sans-serif;
         }
@@ -56,7 +56,7 @@ $result = $conn->query($sql);
         a.button:hover {
             background-color: #2a63c4;
         }
-        */
+
     </style>
 </head>
 <body>
