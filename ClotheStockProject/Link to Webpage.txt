@@ -1,0 +1,4 @@
+Link: clothingstockcheck.wuaze.com
+
+Login: admin
+Password: admin123
