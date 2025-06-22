@@ -2,9 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
+
+    <!-- adjust view for device -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script>
+
+        // show a feature has not been added
         function showNotReady(feature) {
             alert(feature + " feature not added yet.");
         }
@@ -13,6 +17,7 @@
 <body>
     <h2>Retail Stock Manager Dashboard</h2>
 
+    <!-- all buttons for add, record, view stock, logout and sales -->
     <button onclick="showNotReady('Add Item')">Add Item</button>
     <button onclick="showNotReady('Record Sale')">Record Sale</button>
     <button onclick="showNotReady('View Stock Alerts')">View Stock Alerts</button>
