@@ -20,7 +20,44 @@ $result = $conn->query($sql);
 <html>
 <head>
     <title>Inventory</title>
-    
+    <style>
+        
+        /* Basic styles for the inventory page */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 90%;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        tr.low-stock {
+            background-color: #ffe5e5;
+        }
+        a.button {
+            display: block;
+            width: 100px;
+            margin: 20px auto;
+            text-align: center;
+            background-color: #4285f4;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a.button:hover {
+            background-color: #2a63c4;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -69,7 +106,7 @@ $result = $conn->query($sql);
     <?php endif; ?>
 </table>
 
-<a class="button" href="dashboard.html">Back</a>
+<a href="<?php echo ($_SESSION['role'] === 'admin') ? 'dashboard.php' : 'employee_dashboard.php'; ?>">Back</a>
 
 </body>
 </html>
