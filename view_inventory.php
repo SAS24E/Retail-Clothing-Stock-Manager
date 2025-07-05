@@ -11,8 +11,18 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+// Determine if user is admin or employee
+$is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+$back_link = $is_admin ? 'dashboard.php' : 'employee_dashboard.php';
+
 // Fetch products
-$sql = "SELECT * FROM product ORDER BY idproduct ASC";
+if ($is_admin) {
+    // Admin sees all products
+    $sql = "SELECT * FROM product ORDER BY idproduct ASC";
+} else {
+    // Employees only see approved products
+    $sql = "SELECT * FROM product WHERE status = 'approved' ORDER BY idproduct ASC";
+}
 $result = $conn->query($sql);
 ?>
 
@@ -21,8 +31,6 @@ $result = $conn->query($sql);
 <head>
     <title>Inventory</title>
     <style>
-        
-        /* Basic styles for the inventory page */
         body {
             font-family: Arial, sans-serif;
         }
@@ -56,7 +64,6 @@ $result = $conn->query($sql);
         a.button:hover {
             background-color: #2a63c4;
         }
-
     </style>
 </head>
 <body>
@@ -65,8 +72,6 @@ $result = $conn->query($sql);
 
 <table>
     <tr>
-
-        <!-- table headers -->
         <th>ID</th>
         <th>Name</th>
         <th>Brand</th>
@@ -78,15 +83,13 @@ $result = $conn->query($sql);
         <th>Low Stock Threshold</th>
         <th>Created</th>
         <th>Updated</th>
+        <?php if ($is_admin): ?>
+            <th>Status</th>
+        <?php endif; ?>
     </tr>
 
-    <!-- check if products exist -->
     <?php if ($result && $result->num_rows > 0): ?>
-
-    <!-- loop throough each product -->
         <?php while ($row = $result->fetch_assoc()): ?>
-
-    <!-- highlight row if  stock quantity is below the threshold -->
             <tr class="<?= ($row['quantity'] <= $row['low_stock_threshold']) ? 'low-stock' : '' ?>">
                 <td><?= $row['idproduct'] ?></td>
                 <td><?= $row['name'] ?></td>
@@ -99,14 +102,17 @@ $result = $conn->query($sql);
                 <td><?= $row['low_stock_threshold'] ?></td>
                 <td><?= $row['created_at'] ?></td>
                 <td><?= $row['updated_at'] ?></td>
+                <?php if ($is_admin): ?>
+                    <td><?= $row['status'] ?></td>
+                <?php endif; ?>
             </tr>
         <?php endwhile; ?>
     <?php else: ?>
-        <tr><td colspan="11">No products found.</td></tr>
+        <tr><td colspan="<?= $is_admin ? '12' : '11' ?>">No products found.</td></tr>
     <?php endif; ?>
 </table>
 
-<a class="button" href="dashboard.php">Back</a>
+<a class="button" href="<?= $back_link ?>">Back</a>
 
 </body>
 </html>

@@ -1,10 +1,10 @@
 <?php
 
 // information for connecting database
-$host = "localhost";
-$dbuser = "root";
-$dbpass = ""; 
-$dbname = "clothestock";
+$host = "sql210.infinityfree.com";
+$dbuser = "if0_39284743";
+$dbpass = "ZYNKXjRUXaoQd"; 
+$dbname = "if0_39284743_Retail_db";
 
 // create new connection
 $conn = new mysqli($host, $dbuser, $dbpass, $dbname);

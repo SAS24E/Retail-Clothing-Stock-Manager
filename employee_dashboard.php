@@ -18,6 +18,7 @@ if (!isset($_SESSION['user_id'])) {
 
     <!-- Only show inventory access -->
     <button onclick="window.location.href='view_inventory.php'">View Inventory</button>
+     <button onclick="window.location.href='add_item.php'">Add Item</button>
     <br><br>
     <button onclick="window.location.href='logout.php'">Logout</button>
 </body>
