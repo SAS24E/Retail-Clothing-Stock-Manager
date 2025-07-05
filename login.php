@@ -24,7 +24,7 @@ if ($user && $password === $user['password']) {
     $_SESSION['user_id'] = $user['iduser'];
     $_SESSION['username'] = $user['username'];
     $_SESSION['role'] = $user['role'];
-    header("Location: dashboard.html");
+    header("Location: dashboard.php");
     exit;
 } else {
     echo "<h3>Invalid login. <a href='index.html'>Try again</a></h3>";

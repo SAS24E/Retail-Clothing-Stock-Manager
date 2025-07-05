@@ -106,7 +106,7 @@ $result = $conn->query($sql);
     <?php endif; ?>
 </table>
 
-<a class="button" href="dashboard.html">Back</a>
+<a class="button" href="dashboard.php">Back</a>
 
 </body>
 </html>
