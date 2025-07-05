@@ -16,17 +16,18 @@ CREATE TABLE IF NOT EXISTS product (
   low_stock_threshold INT,
   created_at DATETIME,
   updated_at DATETIME,
-  status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending', 
+  status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
   PRIMARY KEY (idproduct)
 ) ENGINE=InnoDB;
-
 
 -- Create user table
 CREATE TABLE IF NOT EXISTS user (
   iduser INT NOT NULL AUTO_INCREMENT,
-  username VARCHAR(45),
-  password VARCHAR(255),
-  role VARCHAR(45),
+  username VARCHAR(45) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('admin', 'employee') NOT NULL,
+  status ENUM('active', 'inactive') DEFAULT 'active',
+  join_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (iduser)
 ) ENGINE=InnoDB;
 
