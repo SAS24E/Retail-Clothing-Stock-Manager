@@ -20,7 +20,7 @@ INSERT INTO product (name, brand, category, size, color, price, quantity, low_st
 ('Slim Fit Jeans', 'Levi\'s', 'Pants', 'M', 'Blue', '$49.99', 10, 3, NOW(), NOW(), 'approved'),
 ('Classic Polo Shirt', 'Ralph Lauren', 'Shirts', 'L', 'White', '$69.00', 5, 2, NOW(), NOW(), 'approved'),
 ('Running Shoes', 'Nike', 'Footwear', '10', 'Black', '$89.99', 15, 5, NOW(), NOW(), 'approved'),
-('Graphic Tee', 'H&M', 'Shirts', 'S', 'Red', '$14.99', 8, 2, NOW(), NOW(), 'pending'),
-('Windbreaker Jacket', 'Adidas', 'Outerwear', 'XL', 'Green', '$59.50', 4, 2, NOW(), NOW(), 'rejected'),
+('Graphic Tee', 'H&M', 'Shirts', 'S', 'Red', '$14.99', 8, 2, NOW(), NOW(), 'approved'),
+('Windbreaker Jacket', 'Adidas', 'Outerwear', 'XL', 'Green', '$59.50', 4, 2, NOW(), NOW(), 'approved'),
 ('Formal Trousers', 'Zara', 'Pants', 'M', 'Gray', '$39.95', 3, 2, NOW(), NOW(), 'approved'),
-('Sneakers', 'Converse', 'Footwear', '9', 'White', '$54.95', 12, 4, NOW(), NOW(), 'pending');
+('Sneakers', 'Converse', 'Footwear', '9', 'White', '$54.95', 12, 4, NOW(), NOW(), 'approved');

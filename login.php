@@ -19,7 +19,13 @@ if ($user) {
         $_SESSION['user_id'] = $user['iduser'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
-        header("Location: dashboard.php");
+
+        // Redirect based on role
+        if ($user['role'] === 'employee') {
+            header("Location: employee_dashboard.php");
+        } else {
+            header("Location: dashboard.php");
+        }
         exit;
     } else {
         echo "<h3>Invalid password. <a href='index.html'>Try again</a></h3>";

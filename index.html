@@ -1,19 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head><title>Retail Stock Manager - Login</title></head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Login page for Retail Stock Manager">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retail Stock Manager - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login page for Retail Stock Manager">
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-    
-    <h2>Login</h2>
+    <div class="login-wrapper">
+        <div class="login-box">
+            <h2>User Login</h2>
+            <form action="login.php" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
 
-    <!-- form that submits login data to login.php -->
-    <form action="login.php" method="POST">
-        Username: <input type="text" name="username" required><br><br>
-        Password: <input type="password" name="password" required><br><br>
-        <input type="submit" value="Login">
-    </form>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
 
