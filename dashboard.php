@@ -31,6 +31,13 @@ if (!isset($_SESSION['user_id'])) {
         <button onclick="window.location.href='view_inventory.php'">View Inventory</button>
         <button onclick="window.location.href='admin/manage_users.php'">Manage Users</button>
         <button onclick="window.location.href='admin/moderate_items.php'">Moderate Items</button>
+        
+         <!-- Analytics Section -->
+        <h3 style="margin-top: 30px;">Analytics</h3>
+        <button onclick="window.location.href='analytics/user_stats.php'">User Statistics</button>
+        <button onclick="window.location.href='analytics/product_stats.php'">Product Statistics</button>
+        <button onclick="window.location.href='analytics/category_analysis.php'">Category Analysis</button>
+        <button onclick="window.location.href='analytics/activity_reports.php'">Activity Reports</button>
 
         <br><br>
         <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
