@@ -25,7 +25,7 @@ INSERT INTO product (name, brand, category, size, color, price, quantity, low_st
 ('Formal Trousers', 'Zara', 'Pants', 'M', 'Gray', '$39.95', 3, 2, NOW(), NOW(), 'approved'),
 ('Sneakers', 'Converse', 'Footwear', '9', 'White', '$54.95', 12, 4, NOW(), NOW(), 'approved');
 
-
+-- ____________________________________________________ New test data____________________________________________________________________________________________________________________________
 
 -- DELETE existing data
 DELETE FROM sales_log;
