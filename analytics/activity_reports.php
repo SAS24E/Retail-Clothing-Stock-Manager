@@ -13,7 +13,7 @@ $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m-d', s
 $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-d');
 
 // User role filter
-$role_filter = isset($_GET['role']) && in_array($_GET['role'], ['admin', 'employee', 'manager']) ? $_GET['role'] : null;
+$role_filter = isset($_GET['role']) && in_array($_GET['role'], ['admin', 'employee']) ? $_GET['role'] : null;
 
 // Get recent activity
 $recent_activity = $conn->query("
@@ -40,10 +40,45 @@ $activity_trends = $conn->query("
     GROUP BY DATE(p.created_at)
     ORDER BY date
 ");
+
+// Get sales trends
+$sales_trends = $conn->query("
+    SELECT 
+        DATE(sold_at) as date,
+        SUM(quantity) as items_sold
+    FROM sales_log
+    WHERE sold_at BETWEEN '$start_date' AND '$end_date 23:59:59'
+    GROUP BY DATE(sold_at)
+    ORDER BY date
+");
+
+// Build base array with products_added
+$activity_data = [];
+$activity_trends->data_seek(0);
+while ($row = $activity_trends->fetch_assoc()) {
+    $activity_data[$row['date']] = ['products_added' => (int)$row['products_added'], 'items_sold' => 0];
+}
+
+// Overlay items_sold
+$sales_trends->data_seek(0);
+while ($row = $sales_trends->fetch_assoc()) {
+    $date = $row['date'];
+    $items_sold = (int)$row['items_sold'];
+
+    if (!isset($activity_data[$date])) {
+        $activity_data[$date] = ['products_added' => 0, 'items_sold' => $items_sold];
+    } else {
+        $activity_data[$date]['items_sold'] = $items_sold;
+    }
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Activity Reports</title>
     <link rel="stylesheet" href="../styles.css">
@@ -54,36 +89,43 @@ $activity_trends = $conn->query("
             margin: 0 auto;
             padding: 20px;
         }
+
         .chart-container {
             background: white;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .filter-form {
             background: white;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 30px;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         th {
             background-color: #f8f9fa;
             font-weight: bold;
         }
     </style>
 </head>
+
 <body>
     <h2>Activity Reports</h2>
     <div class="analytics-container">
@@ -106,7 +148,6 @@ $activity_trends = $conn->query("
                             <option value="">All Roles</option>
                             <option value="admin" <?= $role_filter === 'admin' ? 'selected' : '' ?>>Admin</option>
                             <option value="employee" <?= $role_filter === 'employee' ? 'selected' : '' ?>>Employee</option>
-                            <option value="manager" <?= $role_filter === 'manager' ? 'selected' : '' ?>>Manager</option>
                         </select>
                     </div>
                 </div>
@@ -133,11 +174,11 @@ $activity_trends = $conn->query("
             </thead>
             <tbody>
                 <?php while ($row = $recent_activity->fetch_assoc()): ?>
-                <tr>
-                    <td><?= htmlspecialchars($row['username']) ?></td>
-                    <td><?= ucfirst($row['role']) ?></td>
-                    <td><?= $row['products_added'] ?></td>
-                </tr>
+                    <tr>
+                        <td><?= htmlspecialchars($row['username']) ?></td>
+                        <td><?= ucfirst($row['role']) ?></td>
+                        <td><?= $row['products_added'] ?></td>
+                    </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
@@ -154,28 +195,35 @@ $activity_trends = $conn->query("
             type: 'line',
             data: {
                 labels: [
-                    <?php 
-                    $activity_trends->data_seek(0);
-                    while ($row = $activity_trends->fetch_assoc()): 
-                        echo "'" . $row['date'] . "',";
-                    endwhile; 
+                    <?php
+                    foreach (array_keys($activity_data) as $date): echo "'$date',";
+                    endforeach;
                     ?>
                 ],
                 datasets: [{
-                    label: 'Products Added',
-                    data: [
-                        <?php 
-                        $activity_trends->data_seek(0);
-                        while ($row = $activity_trends->fetch_assoc()): 
-                            echo $row['products_added'] . ",";
-                        endwhile; 
-                        ?>
-                    ],
-                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                    borderColor: 'rgba(255, 159, 64, 1)',
-                    borderWidth: 2,
-                    tension: 0.1
-                }]
+                        label: 'Products Added',
+                        data: [
+                            <?php foreach ($activity_data as $day): echo $day['products_added'] . ",";
+                            endforeach; ?>
+                        ],
+                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 2,
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Items Sold',
+                        data: [
+                            <?php foreach ($activity_data as $day): echo $day['items_sold'] . ",";
+                            endforeach; ?>
+                        ],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        tension: 0.1
+                    }
+                ]
+
             },
             options: {
                 responsive: true,
@@ -194,4 +242,5 @@ $activity_trends = $conn->query("
         });
     </script>
 </body>
+
 </html>

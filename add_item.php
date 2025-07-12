@@ -16,6 +16,8 @@ $back_link = $is_admin ? 'dashboard.php' : 'employee_dashboard.php';
 
 // Determine item status
 $status = $is_admin ? 'approved' : 'pending';
+$added_by = $_SESSION['user_id'];
+
 
 // Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -28,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantity = intval($_POST['quantity']);
     $threshold = intval($_POST['threshold']);
 
-    $stmt = $conn->prepare("INSERT INTO product (name, brand, category, size, color, price, quantity, low_stock_threshold, created_at, updated_at, status) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?)");
-    $stmt->bind_param("sssssdiss", $name, $brand, $category, $size, $color, $price, $quantity, $threshold, $status);
+    $stmt = $conn->prepare("INSERT INTO product (name, brand, category, size, color, price, quantity, low_stock_threshold, created_at, updated_at, status, added_by) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?, ?)");
+    $stmt->bind_param("sssssdissi", $name, $brand, $category, $size, $color, $price, $quantity, $threshold, $status, $added_by);
 
     if ($stmt->execute()) {
         $success = $is_admin 

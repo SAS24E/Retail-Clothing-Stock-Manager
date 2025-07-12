@@ -3,6 +3,17 @@ DROP TABLE IF EXISTS sales_log;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS user;
 
+-- Create user table
+CREATE TABLE IF NOT EXISTS user (
+  iduser INT NOT NULL AUTO_INCREMENT,
+  username VARCHAR(45) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('admin', 'employee') NOT NULL,
+  status ENUM('active', 'inactive') DEFAULT 'active',
+  join_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (iduser)
+) ENGINE=InnoDB;
+
 -- Create product table
 CREATE TABLE IF NOT EXISTS product (
   idproduct INT NOT NULL AUTO_INCREMENT,
@@ -17,19 +28,12 @@ CREATE TABLE IF NOT EXISTS product (
   created_at DATETIME,
   updated_at DATETIME,
   status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
-  PRIMARY KEY (idproduct)
+  added_by INT,
+  PRIMARY KEY (idproduct),
+  FOREIGN KEY (added_by) REFERENCES user(iduser) 
 ) ENGINE=InnoDB;
 
--- Create user table
-CREATE TABLE IF NOT EXISTS user (
-  iduser INT NOT NULL AUTO_INCREMENT,
-  username VARCHAR(45) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  role ENUM('admin', 'employee') NOT NULL,
-  status ENUM('active', 'inactive') DEFAULT 'active',
-  join_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (iduser)
-) ENGINE=InnoDB;
+
 
 -- Create sales_log table
 CREATE TABLE IF NOT EXISTS sales_log (

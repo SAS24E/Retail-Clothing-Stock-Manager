@@ -26,6 +26,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'employee') {
         <!-- Employee features -->
         <button onclick="window.location.href='view_inventory.php'">View Inventory</button>
         <button onclick="window.location.href='add_item.php'">Add Item</button>
+        <button onclick="window.location.href='record_sale.php'">Record Sale</button>
         <br><br>
         <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
     </div>

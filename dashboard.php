@@ -21,16 +21,17 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <h2>Admin Dashboard</h2>
     <div class="dashboard-container">
-        <p>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
+        <h2 style="margin-top: 0;">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
 
         <!-- Admin-only features -->
         <button onclick="window.location.href='add_item.php'">Add Item</button>
-        <button onclick="showNotReady('Record Sale')">Record Sale</button>
-        <button onclick="showNotReady('View Stock Alerts')">View Stock Alerts</button>
-        <button onclick="showNotReady('View Sales')">View Sales</button>
+        <button onclick="window.location.href='record_sale.php'">Record Sale</button>
+        <button onclick="window.location.href='low_stock_alert.php'">Low Stock Alerts</button>
+        <button onclick="window.location.href='view_sales.php'">View Sales</button>
         <button onclick="window.location.href='view_inventory.php'">View Inventory</button>
         <button onclick="window.location.href='admin/manage_users.php'">Manage Users</button>
         <button onclick="window.location.href='admin/moderate_items.php'">Moderate Items</button>
+        
         
          <!-- Analytics Section -->
         <h3 style="margin-top: 30px;">Analytics</h3>
