@@ -26,41 +26,14 @@ $low_stock_query = $conn->query("
 <html>
 <head>
     <title>Low Stock Alerts</title>
-    <link rel="stylesheet" href = styles.css">
-    <style>
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f5f5f5;
-        }
-        .alert {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href = styles.css>
 </head>
 <body>
     <div class="container">
-        <h2>⚠️ Low Stock Alerts</h2>
+        <h2> Low Stock Alerts</h2>
 
         <?php if ($low_stock_query->num_rows === 0): ?>
-            <p style="color: green;">All stock levels are sufficient ✅</p>
+            <p style="color: green;">All stock levels are sufficient </p>
         <?php else: ?>
             <table>
                 <thead>
@@ -91,7 +64,7 @@ $low_stock_query = $conn->query("
         <?php endif; ?>
 
         <br>
-        <button onclick="window.location.href='dashboard.php'" class="logout-button">⬅ Back to Dashboard</button>
+        <button onclick="window.location.href='dashboard.php'" class="logout-button">Back to Dashboard</button>
     </div>
 </body>
 </html>

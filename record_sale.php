@@ -46,25 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Record Sale</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .form-wrapper {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        label, select, input {
-            display: block;
-            width: 100%;
-            margin-bottom: 15px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .success { color: green; text-align: center; font-weight: bold; }
-        .error { color: red; text-align: center; font-weight: bold; }
-    </style>
 </head>
 <body>
     <div class="form-wrapper">

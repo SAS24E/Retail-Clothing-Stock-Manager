@@ -18,7 +18,6 @@ $back_link = $is_admin ? 'dashboard.php' : 'employee_dashboard.php';
 $status = $is_admin ? 'approved' : 'pending';
 $added_by = $_SESSION['user_id'];
 
-
 // Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
@@ -48,70 +47,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Add New Item</title>
-    <style>
-        .form-group { margin-bottom: 15px; }
-        label { display: inline-block; width: 150px; }
-        .success { color: green; }
-        .error { color: red; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Add New Inventory Item</h2>
 
-    <?php if (isset($success)): ?>
-        <p class="success"><?= $success ?></p>
-    <?php elseif (isset($error)): ?>
-        <p class="error"><?= $error ?></p>
-    <?php endif; ?>
+    <div class="form-wrapper">
+        <h2>Add New Inventory Item</h2>
 
-    <form method="POST">
-        <div class="form-group">
-            <label for="name">Product Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
+        <!-- Display success or error message -->
+        <?php if (isset($success)): ?>
+            <p class="success"><?= $success ?></p>
+        <?php elseif (isset($error)): ?>
+            <p class="error"><?= $error ?></p>
+        <?php endif; ?>
 
-        <div class="form-group">
-            <label for="brand">Brand:</label>
-            <input type="text" id="brand" name="brand" required>
-        </div>
+        <!-- Add Item Form -->
+        <form method="POST">
+            <div class="form-group">
+                <label for="name">Product Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
 
-        <div class="form-group">
-            <label for="category">Category:</label>
-            <select id="category" name="category" required>
-                <option value="Shirts">Shirts</option>
-                <option value="Pants">Pants</option>
-                <option value="Footwear">Footwear</option>
-                <option value="Outerwear">Outerwear</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="brand">Brand:</label>
+                <input type="text" id="brand" name="brand" required>
+            </div>
 
-        <div class="form-group">
-            <label for="size">Size:</label>
-            <input type="text" id="size" name="size" required>
-        </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="Shirts">Shirts</option>
+                    <option value="Pants">Pants</option>
+                    <option value="Footwear">Footwear</option>
+                    <option value="Outerwear">Outerwear</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="color">Color:</label>
-            <input type="text" id="color" name="color" required>
-        </div>
+            <div class="form-group">
+                <label for="size">Size:</label>
+                <input type="text" id="size" name="size" required>
+            </div>
 
-        <div class="form-group">
-            <label for="price">Price ($):</label>
-            <input type="text" id="price" name="price" required pattern="^\$?\d+(\.\d{2})?$" title="Format: $XX.XX">
-        </div>
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" required>
+            </div>
 
-        <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="0" required>
-        </div>
+            <div class="form-group">
+                <label for="price">Price ($):</label>
+                <input type="text" id="price" name="price" required pattern="^\$?\d+(\.\d{2})?$" title="Format: $XX.XX">
+            </div>
 
-        <div class="form-group">
-            <label for="threshold">Low Stock Threshold:</label>
-            <input type="number" id="threshold" name="threshold" min="0" required>
-        </div>
+            <div class="form-group">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="0" required>
+            </div>
 
-        <button type="submit">Add Item</button>
-        <button type="button" onclick="window.location.href='<?= $back_link ?>'">Back</button>
-    </form>
+            <div class="form-group">
+                <label for="threshold">Low Stock Threshold:</label>
+                <input type="number" id="threshold" name="threshold" min="0" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">Add Item</button>
+                <button type="button" onclick="window.location.href='<?= $back_link ?>'" class="back-button">Back</button>
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>

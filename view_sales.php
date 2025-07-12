@@ -27,27 +27,6 @@ $sales = $conn->query("
 <head>
     <title>View Sales</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .analytics-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .sales-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .sales-table th, .sales-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-        .sales-table th {
-            background-color: #f8f9fa;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <h2>Sales Log</h2>
@@ -78,7 +57,7 @@ $sales = $conn->query("
         </table>
 
         <div style="text-align: center; margin-top: 30px;">
-            <button onclick="window.location.href='dashboard.php'" class="logout-button">Back to Dashboard</button>
+            <button onclick="window.location.href='../dashboard.php'" class="logout-button">Back to Dashboard</button>
         </div>
     </div>
 </body>
