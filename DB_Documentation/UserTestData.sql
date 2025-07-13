@@ -25,9 +25,10 @@ INSERT INTO product (name, brand, category, size, color, price, quantity, low_st
 ('Formal Trousers', 'Zara', 'Pants', 'M', 'Gray', '$39.95', 3, 2, NOW(), NOW(), 'approved'),
 ('Sneakers', 'Converse', 'Footwear', '9', 'White', '$54.95', 12, 4, NOW(), NOW(), 'approved');
 
--- ____________________________________________________ New test data____________________________________________________________________________________________________________________________
+-- ==== New test data 07/13/25 ==== 
 
--- DELETE existing data
+
+-- DELETE existing data 
 DELETE FROM sales_log;
 DELETE FROM product;
 DELETE FROM user;
@@ -46,7 +47,7 @@ INSERT INTO user (username, password, role, status, join_date) VALUES
 
 -- INSERT Sample Products with realistic dates and added_by users
 INSERT INTO product (name, brand, category, size, color, price, quantity, low_stock_threshold, created_at, updated_at, status, added_by) VALUES
-('Slim Fit Jeans', 'Levi\'s', 'Pants', 'M', 'Blue', '$49.99', 10, 3, DATE_SUB(NOW(), INTERVAL 25 DAY), DATE_SUB(NOW(), INTERVAL 25 DAY), 'approved', 1),
+('Slim Fit Jeans', 'Levi''s', 'Pants', 'M', 'Blue', '$49.99', 10, 3, DATE_SUB(NOW(), INTERVAL 25 DAY), DATE_SUB(NOW(), INTERVAL 25 DAY), 'approved', 1),
 ('Classic Polo Shirt', 'Ralph Lauren', 'Shirts', 'L', 'White', '$69.00', 5, 2, DATE_SUB(NOW(), INTERVAL 18 DAY), DATE_SUB(NOW(), INTERVAL 18 DAY), 'approved', 2),
 ('Running Shoes', 'Nike', 'Footwear', '10', 'Black', '$89.99', 15, 5, DATE_SUB(NOW(), INTERVAL 15 DAY), DATE_SUB(NOW(), INTERVAL 15 DAY), 'approved', 2),
 ('Graphic Tee', 'H&M', 'Shirts', 'S', 'Red', '$14.99', 8, 2, DATE_SUB(NOW(), INTERVAL 9 DAY), DATE_SUB(NOW(), INTERVAL 8 DAY), 'approved', 4),
