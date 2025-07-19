@@ -27,6 +27,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'employee') {
         <button onclick="window.location.href='view_inventory.php'">View Inventory</button>
         <button onclick="window.location.href='add_item.php'">Add Item</button>
         <button onclick="window.location.href='record_sale.php'">Record Sale</button>
+        <button onclick="window.location.href='support_pages/support.php'">Support</button>
+        <br><br>
+        <!-- support section -->
+        <h3 style="margin-top: 30px;">Support</h3>
+        <button onclick="window.location.href='support_pages/view_tickets.php'">View My Tickets</button>
+        <button onclick="window.location.href='support_pages/support.php'">Submit a Ticket</button>
         <br><br>
         <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
     </div>

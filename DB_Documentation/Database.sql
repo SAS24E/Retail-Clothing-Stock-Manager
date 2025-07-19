@@ -1,7 +1,9 @@
 -- DROP TABLES IN DEPENDENCY ORDER
+DROP TABLE IF EXISTS support_tickets ;
 DROP TABLE IF EXISTS sales_log;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS user;
+
 
 -- Create user table
 CREATE TABLE IF NOT EXISTS user (
@@ -46,3 +48,17 @@ CREATE TABLE IF NOT EXISTS sales_log (
   FOREIGN KEY (user_iduser) REFERENCES user(iduser),
   FOREIGN KEY (product_idproduct) REFERENCES product(idproduct)
 ) ENGINE=InnoDB;
+
+-- Create support_tickets table
+CREATE TABLE IF NOT EXISTS support_tickets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    message TEXT,
+    response TEXT,  
+    status ENUM('open', 'in_progress', 'resolved', 'responded') DEFAULT 'open',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(iduser) ON DELETE CASCADE
+) ENGINE=InnoDB;
+

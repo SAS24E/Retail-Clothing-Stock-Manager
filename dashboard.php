@@ -40,6 +40,13 @@ if (!isset($_SESSION['user_id'])) {
         <button onclick="window.location.href='analytics/category_analysis.php'">Category Analysis</button>
         <button onclick="window.location.href='analytics/activity_reports.php'">Activity Reports</button>
 
+        <!-- Support Section -->
+        <h3 style="margin-top: 30px;">Support</h3>
+        <button onclick="window.location.href='support_pages/view_tickets.php'">View Tickets</button>
+        <button onclick="window.location.href='support_pages/support.php'">Submit a Ticket</button>
+
+
+
         <br><br>
         <button class="logout-button" onclick="window.location.href='logout.php'">Logout</button>
     </div>

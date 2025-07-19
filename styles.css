@@ -484,35 +484,110 @@ th {
 }
 
 .project-header {
-    text-align: center;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
 }
 
 .project-header h1 {
-    color: #2c3e50;
-    font-size: 24px;
-    margin: 0 0 5px 0;
+  color: #2c3e50;
+  font-size: 24px;
+  margin: 0 0 5px 0;
 }
 
 .project-subtitle {
-    color: #7f8c8d;
-    font-weight: bold;
-    margin: 0;
-    font-size: 16px;
+  color: #7f8c8d;
+  font-weight: bold;
+  margin: 0;
+  font-size: 16px;
 }
 
 .team-members {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    text-align: center;
-    font-size: 14px;
-    color: #555;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
 }
 
 .team-members p:first-child {
-    font-weight: bold;
-    margin-bottom: 8px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* View_ticekt.php styling */
+.inline-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.inline-form textarea {
+  resize: vertical;
+  min-height: 60px;
+  font-size: 14px;
+  padding: 8px;
+}
+.inline-form button {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+.inline-form .respond-btn {
+  background-color: #2ecc71;
+}
+.inline-form .respond-btn:hover {
+  background-color: #27ae60;
+}
+.inline-form .delete-btn {
+  background-color: #e74c3c;
+}
+.inline-form .delete-btn:hover {
+  background-color: #c0392b;
+}
+.tickets-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.success {
+  color: green;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* submit_ticket.php styles */
+.tickets-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.support-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.support-form input,
+.support-form textarea {
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+.support-form button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.support-form button:hover {
+  background-color: #2980b9;
 }
