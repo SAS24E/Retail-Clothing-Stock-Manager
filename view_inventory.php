@@ -83,7 +83,7 @@ $result = $conn->query($sql);
     </table>
 
     <div style="text-align: center; margin-top: 30px;">
-        <button onclick="window.location.href='../dashboard.php'" class="logout-button">Back to Dashboard</button>
+        <button onclick="window.location.href='<?= $back_link ?>'" class="logout-button">Back to Dashboard</button>
     </div>
 
 </body>
