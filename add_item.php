@@ -110,6 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-actions">
                 <button type="submit">Add Item</button>
+                <br><br>
                 <button type="button" onclick="window.location.href='<?= $back_link ?>'" class="back-button">Back</button>
             </div>
         </form>

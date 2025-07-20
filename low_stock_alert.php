@@ -2,11 +2,14 @@
 session_start();
 require_once 'db_connect.php';
 
-// Allow only admin users
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+// Check if user is logged in (admin or employee)
+if (!isset($_SESSION['user_id']) || !in_array($_SESSION['role'], ['admin', 'employee'])) {
     header("Location: index.html");
     exit;
 }
+
+$is_admin = $_SESSION['role'] === 'admin';
+$back_link = $is_admin ? 'dashboard.php' : 'employee_dashboard.php';
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -24,10 +27,12 @@ $low_stock_query = $conn->query("
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Low Stock Alerts</title>
-    <link rel="stylesheet" href = styles.css>
+    <link rel="stylesheet" href=styles.css>
 </head>
+
 <body>
     <div class="container">
         <h2> Low Stock Alerts</h2>
@@ -49,22 +54,23 @@ $low_stock_query = $conn->query("
                 </thead>
                 <tbody>
                     <?php while ($row = $low_stock_query->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($row['name']) ?></td>
-                        <td><?= htmlspecialchars($row['brand']) ?></td>
-                        <td><?= htmlspecialchars($row['category']) ?></td>
-                        <td><?= htmlspecialchars($row['size']) ?></td>
-                        <td><?= htmlspecialchars($row['color']) ?></td>
-                        <td class="alert"><?= $row['quantity'] ?></td>
-                        <td><?= $row['low_stock_threshold'] ?></td>
-                    </tr>
+                        <tr>
+                            <td><?= htmlspecialchars($row['name']) ?></td>
+                            <td><?= htmlspecialchars($row['brand']) ?></td>
+                            <td><?= htmlspecialchars($row['category']) ?></td>
+                            <td><?= htmlspecialchars($row['size']) ?></td>
+                            <td><?= htmlspecialchars($row['color']) ?></td>
+                            <td class="alert"><?= $row['quantity'] ?></td>
+                            <td><?= $row['low_stock_threshold'] ?></td>
+                        </tr>
                     <?php endwhile; ?>
                 </tbody>
             </table>
         <?php endif; ?>
 
         <br>
-        <button onclick="window.location.href='dashboard.php'" class="logout-button">Back to Dashboard</button>
+        <button type="button" onclick="window.location.href='<?= $back_link ?>'" class="back-button">Back</button>
     </div>
 </body>
+
 </html>

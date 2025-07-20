@@ -48,11 +48,11 @@ $back_link = $is_admin ? '../dashboard.php' : '../employee_dashboard.php';
         </form>
 
         <div class="form-actions">
-            <a href="view_tickets.php" class="button">View My Tickets</a>
+            <button class = "hover" onclick ="window.location.href= 'view_tickets.php'">View My Tickets</button>
         </div>
 
         <div class="form-actions">
-            <button class="logout" onclick="window.location.href='<?= $back_link ?>'">Back to Dashboard</button>
+            <button class="hover" onclick="window.location.href='<?= $back_link ?>'">Back to Dashboard</button>
         </div>
     </div>
 </body>
